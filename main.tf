@@ -15,8 +15,10 @@ resource "aws_db_instance" "main" {
   port                      = var.port
   engine                    = var.engine
   engine_version            = var.engine_version
+  option_group_name         = var.option_group_name
+  parameter_group_name      = var.parameter_group_name
   instance_class            = var.instance_type
-  storage_type              = "gp2"
+  storage_type              = var.storage_type
   allocated_storage         = var.allocated_storage
   snapshot_identifier       = var.snapshot_identifier
   final_snapshot_identifier = "${var.name_prefix}-final-${random_string.suffix.id}"
@@ -33,8 +35,27 @@ resource "aws_db_instance" "main" {
   storage_encrypted         = var.storage_encrypted
   kms_key_id                = var.kms_key_id
   deletion_protection       = var.deletion_protection
+  ca_cert_identifier        = var.ca_cert_identifier
 
   apply_immediately = var.apply_immediately
+
+  # New params
+  domain                                = var.domain
+  domain_iam_role_name                  = var.domain_iam_role_name
+  iam_database_authentication_enabled   = var.iam_database_authentication_enabled
+  replicate_source_db                   = var.replicate_source_db
+  availability_zone                     = var.availability_zone
+  iops                                  = var.iops
+  allow_major_version_upgrade           = var.allow_major_version_upgrade
+  auto_minor_version_upgrade            = var.auto_minor_version_upgrade
+  copy_tags_to_snapshot                 = var.copy_tags_to_snapshot
+  max_allocated_storage                 = var.max_allocated_storage
+  performance_insights_enabled          = var.performance_insights_enabled
+  performance_insights_retention_period = var.performance_insights_enabled == true ? var.performance_insights_retention_period : null
+  character_set_name                    = var.character_set_name
+  enabled_cloudwatch_logs_exports       = var.enabled_cloudwatch_logs_exports
+  delete_automated_backups              = var.delete_automated_backups
+
 
   # NOTE: This is duplicated because subnet_group does not return the name.
   db_subnet_group_name = "${var.name_prefix}-subnet-group"
@@ -60,6 +81,7 @@ resource "aws_security_group" "main" {
 
 resource "aws_security_group_rule" "egress" {
   security_group_id = aws_security_group.main.id
+  description       = "Terraformed security group."
   type              = "egress"
   protocol          = "-1"
   from_port         = 0

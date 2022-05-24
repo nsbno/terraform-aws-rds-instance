@@ -61,12 +61,6 @@ resource "aws_db_instance" "main" {
   db_subnet_group_name = "${var.name_prefix}-subnet-group"
 
   tags = merge(var.tags, { "Name" = "${var.name_prefix}-db" })
-
-  lifecycle {
-    ignore_changes = [
-      deletion_protection
-    ]
-  }
 }
 
 resource "aws_db_subnet_group" "main" {

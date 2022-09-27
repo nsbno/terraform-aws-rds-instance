@@ -192,7 +192,7 @@ variable "iam_database_authentication_enabled" {
 variable "replicate_source_db" {
   description = "Specifies that this resource is a Replicate database, and to use this value as the source database. This correlates to the identifier of another Amazon RDS Database to replicate."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "availability_zone" {

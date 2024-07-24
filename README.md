@@ -1,3 +1,6 @@
+> [!WARNING]
+> Deprecated. Use [terraform-aws-relational-database](https://github.com/nsbno/terraform-aws-relational-database) instead.
+
 ## RDS Instance
 
 [![workflow](https://github.com/telia-oss/terraform-aws-rds-instance/workflows/workflow/badge.svg)](https://github.com/telia-oss/terraform-aws-rds-instance/actions)

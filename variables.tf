@@ -60,7 +60,8 @@ variable "engine" {
 variable "engine_version" {
   description = "The engine version to use."
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "instance_type" {
@@ -90,13 +91,15 @@ variable "monitoring_interval" {
 variable "snapshot_identifier" {
   description = "Specifies whether or not to create this instance from a snapshot."
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "license_model" {
   description = "License model information for this DB instance. Optional, but required for some DB engines, i.e. Oracle SE1"
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "maintenance_window" {
@@ -138,19 +141,22 @@ variable "tags" {
 variable "option_group_name" {
   description = "Name of the DB option group to associate."
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "parameter_group_name" {
   description = "Name of the DB parameter group to associate"
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "monitoring_role_arn" {
   description = "The ARN for the IAM role that permits RDS to send Enhanced Monitoring metrics to CloudWatch Logs"
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "storage_encrypted" {
@@ -162,7 +168,8 @@ variable "storage_encrypted" {
 variable "kms_key_id" {
   description = "The ARN for the KMS encryption key. If creating an encrypted replica, set this to the destination KMS ARN."
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "ca_cert_identifier" {
@@ -174,13 +181,15 @@ variable "ca_cert_identifier" {
 variable "domain" {
   description = "The ID of the Directory Service Active Directory domain to create the instance in"
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "domain_iam_role_name" {
   description = "(Required if domain is provided) The name of the IAM role to be used when making API calls to the Directory Service"
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "iam_database_authentication_enabled" {
@@ -198,7 +207,8 @@ variable "replicate_source_db" {
 variable "availability_zone" {
   description = "The Availability Zone of the RDS instance"
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "storage_type" {
@@ -252,7 +262,8 @@ variable "performance_insights_retention_period" {
 variable "character_set_name" {
   description = "(Optional) The character set name to use for DB encoding in Oracle instances. This can't be changed. See Oracle Character Sets Supported in Amazon RDS for more information"
   type        = string
-  default     = ""
+  default     = null
+  nullable    = true
 }
 
 variable "enabled_cloudwatch_logs_exports" {
